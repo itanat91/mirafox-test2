@@ -15,13 +15,9 @@ class Autoloader
      */
     protected function autoload(string $class): bool
     {
-        $pathParts = explode('\\', $class);
-        if (is_array($pathParts)) {
-            include end($pathParts) . '.php';
+        $class = str_replace(['app\\','\\'], ['/', '/'], $class);
+        include ROOT . $class . '.php';
 
-            return true;
-        }
-
-        return false;
+        return true;
     }
 }
